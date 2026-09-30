@@ -1,70 +1,49 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Docxly - bold the headings in your Word Docx file</title>
-  <meta name="description" content="Automatically bold the headings in a Word Docx file. Private, deterministic, preservation-first." />
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Docxly - bold the headings in your Word Docx file</title>
+    <meta name="description" content="Bold the headings in a Word Docx file. Runs in your browser. Private and deterministic." />
+    <base href="/docxly/" />
+    <link rel="stylesheet" href="css/app.css" />
 </head>
+
 <body>
-  <header>
-    <div class="brand">Docxly</div>
-    <p class="tagline">Bold the headings in your Word Docx file. Private. Deterministic.</p>
-  </header>
+    <div id="app">
+        <svg class="loading-progress">
+            <circle r="40%" cx="50%" cy="50%" />
+            <circle r="40%" cx="50%" cy="50%" />
+        </svg>
+        <div class="loading-progress-text"></div>
+    </div>
 
-  <main>
-    <section class="card">
-      <h2>1. Choose a document</h2>
-      <label class="drop" for="file">
-        <input id="file" type="file" accept=".docx" />
-        <span id="fileLabel">Click to choose a .docx file</span>
-      </label>
-    </section>
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">x</a>
+    </div>
 
-    <section class="card">
-      <h2>2. Options</h2>
-      <label class="row"><input id="includeSubheadings" type="checkbox" checked /> Bold subheadings too</label>
-      <p class="muted">Front matter (the setup region at the start of a document) is always left untouched. A heading that introduces a list is handled as part of that list.</p>
-    </section>
-
-    <section class="card">
-      <h2>3. Run</h2>
-      <div class="row">
-        <button id="run" class="primary">Run</button>
-        <a id="download" class="button disabled" download>Download result</a>
-      </div>
-      <pre id="log" class="log" aria-live="polite"></pre>
-    </section>
-
-    <details class="card">
-      <summary>Settings</summary>
-      <label class="field">Service URL
-        <input id="serviceUrl" type="url" placeholder="https://docxly.example.com" />
-      </label>
-      <label class="field">API key (optional)
-        <input id="apiKey" type="password" placeholder="leave empty if not required" />
-      </label>
-      <div class="row">
-        <button id="save" class="secondary">Save</button>
-        <button id="test" class="secondary">Test connection</button>
-      </div>
-      <p class="muted">Your settings are stored only in this browser (localStorage).</p>
-    </details>
-
-    <section class="card privacy">
-      <strong>Privacy.</strong> Your document is sent only to the Docxly service you configure.
-      It is not sent to any AI provider and is not retained. Everything that is not part of the
-      requested job is preserved exactly.
-    </section>
-  </main>
-
-  <footer>
-    <span>Docxly</span> · <a href="CONFIGURATION.md">Configuration</a>
-    <p class="muted">Written by a non-native English speaker, with help from AI tools.</p>
-  </footer>
-
-  <script src="config.js"></script>
-  <script src="app.js"></script>
+    <script>
+        window.docxly = {
+            download: function (fileName, base64) {
+                const binary = atob(base64);
+                const bytes = new Uint8Array(binary.length);
+                for (let i = 0; i < binary.length; i++) { bytes[i] = binary.charCodeAt(i); }
+                const blob = new Blob([bytes], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = fileName;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                URL.revokeObjectURL(url);
+            }
+        };
+    </script>
+    <script src="_framework/blazor.webassembly.js"></script>
 </body>
+
 </html>

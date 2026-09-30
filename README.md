@@ -2,44 +2,59 @@
 
 **Automatic, private formatting for MS Word Docx files.**
 
-> Note: I am not a native English speaker. This project's text was written with
-> the help of AI tools, so some wording may read awkwardly. Corrections and
-> clearer phrasing are welcome.
+**[Live demo](https://qazinafay.github.io/docxly/)** - upload a Word Docx file and bold the headings right in your browser. No sign up, nothing uploaded.
 
-Docxly takes a Word Docx file, applies a formatting job, and returns a new Word Docx file with only that change made. Everything else in the document is preserved.
-
-The first job available is **Bold headings** - Docxly finds the headings and subheadings in the body of the document and makes them bold, leaving front matter, body text, lists, and every other formatting property exactly as they were.
+> Note: English is not my first language, so some wording may be imperfect.
 
 ## Why Docxly
 
-- **Private.** Your document is never sent to a third-party AI service. Processing is deterministic.
-- **Preservation-first.** Only the requested formatting changes. Text, tables, styles, headers, footers, and untouched content come back unchanged.
-- **Works on real documents.** Handles documents with weak, missing, or inconsistent Word styles - the kind that trip up generic tools.
+Formatting document files when you are in a hurry can be quite a daunting and
+laborious activity. This tool was made to address that, so you can save some
+time for yourself or your family, and let the tool do the laborious work.
 
-## Quick start
+## What it does
 
-### Web app
-1. Open the Docxly web app.
-2. Upload your `.docx`.
-3. Choose the job (default: **Bold headings**).
-4. Run it and download the result.
+Docxly takes a Word Docx file, applies one formatting job, and returns a new
+Word Docx file with only that change made. Everything else in the document is
+preserved.
 
-See [`CONFIGURATION.md`](CONFIGURATION.md) for every setting.
+The first job is **Bold headings**: Docxly finds the headings and subheadings in
+the body of the document and makes them bold. Front matter (the setup region at
+the start of a document) is left untouched, and a heading that introduces a list
+is handled as part of that list.
 
-### API
-```bash
-curl -X POST "https://<your-docxly-host>/bold-headings" \
-  -F "file=@document.docx" \
-  --output formatted.docx
-```
+- **Private.** The web app runs in your browser, so your document never leaves
+  your computer. No AI service is involved.
+- **Preservation-first.** Only the requested formatting changes. Text, tables,
+  styles, headers, footers, and everything else come back unchanged.
+- **Works on real documents.** Handles documents with weak, missing, or
+  inconsistent Word styles, the kind that trip up generic tools.
+
+## Live demo
+
+Open **https://qazinafay.github.io/docxly/**
+
+1. Choose a `.docx` file.
+2. Leave "Bold subheadings too" checked, or turn it off.
+3. Click **Run**.
+4. Click **Download result**.
+
+Everything runs locally in your browser. The first load takes a few seconds.
+
+## Configuration and API
+
+See [`CONFIGURATION.md`](CONFIGURATION.md) for the web app options and for the
+API (for developers who want to run the service themselves).
 
 ## Privacy
-- Documents are not used for training.
-- Documents are not sent to external AI providers.
-- Uploaded files are processed for the request and are not retained.
+
+- The web app processes your file in the browser and does not upload it.
+- Documents are not sent to AI providers and are not used for training.
 
 ## Links
-- Configuration and setup: [`CONFIGURATION.md`](CONFIGURATION.md)
+
+- Live demo: https://qazinafay.github.io/docxly/
+- Configuration: [`CONFIGURATION.md`](CONFIGURATION.md)
 
 ---
 

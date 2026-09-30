@@ -8,23 +8,12 @@ describes behavior and settings only.
 
 ## 1. Web app
 
-The web app is a browser tool: upload a document, choose a job, download the
-result. No install required.
+The web app is a browser tool. It runs completely inside your browser, so your
+document is not uploaded anywhere. No install and no account are required.
 
-### 1.1 Connect to a service
-Open the app. It connects to a Docxly service automatically.
+Open: https://qazinafay.github.io/docxly/
 
-To point the app at a different service:
-
-1. Open **Settings** (gear icon).
-2. Set **Service URL** to your service address, for example:
-   ```
-   https://docxly.example.com
-   ```
-3. If your service requires a key, enter it under **API key**.
-4. Click **Test connection**. A green status means the app can reach the service.
-
-### 1.2 Jobs and options
+### 1.1 Options
 
 | Option | Default | What it does |
 |---|---|---|
@@ -33,21 +22,22 @@ To point the app at a different service:
 | **Front matter** | Skipped (fixed) | The setup region at the start of a document is never modified. |
 
 Notes:
-- A heading followed by a list is treated as the **title of that list** and is
+- A heading followed by a list is treated as the title of that list and is
   handled as part of the list, not as a body heading.
 - Only the requested change is applied. Text, lists, tables, headers, footers,
   and all other formatting are preserved.
 
-### 1.3 Run a document
-1. **Choose file** → select a `.docx`.
-2. Confirm the job and options.
-3. **Run**. A progress state is shown.
-4. **Download** the formatted `.docx` when ready.
+### 1.2 Run a document
+1. Choose a `.docx` file.
+2. Confirm the options.
+3. Click **Run**.
+4. Click **Download result** to save the formatted `.docx`.
 
-### 1.4 Browser requirements
+### 1.3 Browser requirements
 - Current Chrome, Edge, Firefox, or Safari.
 - JavaScript enabled.
 - Only `.docx` files are accepted. `.doc`, PDF, and other formats are not.
+- The first load takes a few seconds while the app downloads into the browser.
 
 ---
 
@@ -167,5 +157,4 @@ Response: the formatted `.docx` (HTTP 200), with these headers:
 
 ---
 
-Note: I am not a native English speaker. This guide was written with the help of
-AI tools. Improvements to the wording are welcome.
+Note: English is not my first language, so some wording may be imperfect.

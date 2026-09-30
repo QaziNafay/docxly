@@ -1,4 +1,4 @@
-# Docxly — Configuration Guide
+# Docxly - Configuration Guide
 
 Docxly formats **MS Word Docx files** (`.docx`). This guide explains how to
 configure it for the **web app** and for the **software/API service**. It
@@ -116,7 +116,7 @@ Form fields:
 
 | Field | Required | Default | Description |
 |---|---|---|---|
-| `file` | Yes | — | The `.docx` file to format. |
+| `file` | Yes | - | The `.docx` file to format. |
 | `include_subheadings` | No | `true` | Bold subheadings as well as headings. |
 | `include_front_matter` | No | `false` | Keep this `false` to leave the setup region untouched. |
 
@@ -142,7 +142,7 @@ Response: the formatted `.docx` (HTTP 200), with these headers:
 | Status | Body | Meaning |
 |---|---|---|
 | `400` | `{ "error": "..." }` | Missing file, wrong format, or file too large. |
-| `401` | — | Missing or wrong API key. |
+| `401` | - | Missing or wrong API key. |
 
 ---
 
@@ -164,3 +164,8 @@ Response: the formatted `.docx` (HTTP 200), with these headers:
 | `400` on upload | Confirm the file is `.docx`, non-empty, and within the size limit. |
 | Nothing changes in the output | The document already satisfied the job (`X-Changed: false`). |
 | Headings not detected | The document may have very unusual structure. Report it with a sample. |
+
+---
+
+Note: I am not a native English speaker. This guide was written with the help of
+AI tools. Improvements to the wording are welcome.

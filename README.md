@@ -2,15 +2,19 @@
 
 **Automatic, private formatting for MS Word Docx files.**
 
+> Note: I am not a native English speaker. This project's text was written with
+> the help of AI tools, so some wording may read awkwardly. Corrections and
+> clearer phrasing are welcome.
+
 Docxly takes a Word Docx file, applies a formatting job, and returns a new Word Docx file with only that change made. Everything else in the document is preserved.
 
-The first job available is **Bold headings** — Docxly finds the headings and subheadings in the body of the document and makes them bold, leaving front matter, body text, lists, and every other formatting property exactly as they were.
+The first job available is **Bold headings** - Docxly finds the headings and subheadings in the body of the document and makes them bold, leaving front matter, body text, lists, and every other formatting property exactly as they were.
 
 ## Why Docxly
 
 - **Private.** Your document is never sent to a third-party AI service. Processing is deterministic.
 - **Preservation-first.** Only the requested formatting changes. Text, tables, styles, headers, footers, and untouched content come back unchanged.
-- **Works on real documents.** Handles documents with weak, missing, or inconsistent Word styles — the kind that trip up generic tools.
+- **Works on real documents.** Handles documents with weak, missing, or inconsistent Word styles - the kind that trip up generic tools.
 
 ## Quick start
 

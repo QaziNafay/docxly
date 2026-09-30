@@ -21,18 +21,31 @@ function log(message) {
   els.log.textContent = message;
 }
 
+function deployerConfig() {
+  return window.DOCXLY_CONFIG || {};
+}
+
 function serviceUrl() {
   return els.serviceUrl.value.trim().replace(/\/+$/, "");
 }
 
 function loadSettings() {
+  let saved = {};
   try {
-    const saved = JSON.parse(localStorage.getItem(STORAGE) || "{}");
-    els.serviceUrl.value = saved.serviceUrl || "";
-    els.apiKey.value = saved.apiKey || "";
+    saved = JSON.parse(localStorage.getItem(STORAGE) || "{}");
   } catch {
     /* ignore */
   }
+  els.serviceUrl.value = saved.serviceUrl || deployerConfig().serviceUrl || "";
+  els.apiKey.value = saved.apiKey || deployerConfig().apiKey || "";
+}
+
+function openSettings() {
+  const details = document.querySelector("details.card");
+  if (details) {
+    details.open = true;
+  }
+  els.serviceUrl.focus();
 }
 
 function saveSettings() {
@@ -83,7 +96,11 @@ els.run.addEventListener("click", async () => {
   }
   const url = serviceUrl();
   if (!url) {
-    log("Open Settings and enter the Service URL.");
+    openSettings();
+    log(
+      "No Service URL set. Open Settings, paste the address of a running Docxly " +
+        "service (for local testing: http://127.0.0.1:5000), then Run."
+    );
     return;
   }
 

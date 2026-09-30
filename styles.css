@@ -1,0 +1,121 @@
+:root {
+  --bg: #f6f7f9;
+  --card: #ffffff;
+  --text: #1c2230;
+  --muted: #6b7480;
+  --line: #e3e6ea;
+  --accent: #2f6fed;
+  --accent-dark: #2456bd;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.5;
+}
+
+header {
+  padding: 28px 20px 8px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.brand {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--accent);
+}
+
+.tagline { color: var(--muted); margin: 4px 0 0; }
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 12px 20px 40px;
+  display: grid;
+  gap: 14px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+
+.card h2 { margin: 0 0 10px; font-size: 15px; }
+
+.drop {
+  display: block;
+  border: 2px dashed var(--line);
+  border-radius: 8px;
+  padding: 22px;
+  text-align: center;
+  color: var(--muted);
+  cursor: pointer;
+}
+.drop:hover { border-color: var(--accent); color: var(--accent); }
+.drop input { display: none; }
+
+.row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+button, .button {
+  font: inherit;
+  border-radius: 8px;
+  padding: 9px 16px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--text);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+button.primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+button.secondary { background: #f1f4f8; }
+
+.button.disabled { pointer-events: none; opacity: 0.5; }
+
+.field { display: block; margin: 10px 0; font-size: 13px; color: var(--muted); }
+.field input {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font: inherit;
+  color: var(--text);
+}
+
+.muted { color: var(--muted); font-size: 13px; }
+
+.log {
+  margin: 12px 0 0;
+  background: #0f1420;
+  color: #d7e0ea;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 12px;
+  min-height: 20px;
+  max-height: 180px;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+
+.privacy { font-size: 13px; color: var(--muted); }
+
+footer {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+footer a { color: var(--accent); }

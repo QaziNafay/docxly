@@ -4,11 +4,11 @@
            xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
            xsi:type="TaskPaneApp">
   <Id>b7a1e2c4-3f5d-4a9b-8c21-6d7e9f0a1b2c</Id>
-  <Version>1.0.0.3</Version>
+  <Version>1.0.0.4</Version>
   <ProviderName>Docxly</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Docxly - Automated" />
-  <Description DefaultValue="In a hurry and want to bold all of your headings? Try Docxly." />
+  <Description DefaultValue="In a hurry and want to bold all your headings quickly? Docxly is here to help. We believe your time is precious, and this is built on that philosophy." />
   <IconUrl DefaultValue="https://qazinafay.github.io/docxly/addin/assets/icon-32.png" />
   <HighResolutionIconUrl DefaultValue="https://qazinafay.github.io/docxly/addin/assets/icon-80.png" />
   <SupportUrl DefaultValue="https://ko-fi.com/siliconmystic" />

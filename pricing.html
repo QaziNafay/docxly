@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Docxly - Plans</title>
+  <meta name="description" content="Docxly plans. Start free in your browser. Paid plans are coming soon." />
+  <style>
+    :root { --bg:#f6f7f9; --card:#fff; --text:#1c2230; --muted:#6b7480; --line:#e3e6ea; --accent:#2f6fed; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif; color:var(--text); background:var(--bg); line-height:1.5; }
+    header, main, footer { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+    header { padding-top: 28px; }
+    .brand { font-size: 30px; font-weight: 700; letter-spacing: -0.5px; color: var(--accent); text-decoration: none; }
+    .tagline { color: var(--muted); margin: 4px 0 0; }
+    h1 { font-size: 22px; margin: 24px 0 6px; }
+    .tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 18px 0 30px; }
+    .tier { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 18px; display: flex; flex-direction: column; }
+    .tier h2 { margin: 0 0 4px; font-size: 17px; }
+    .price { font-size: 20px; font-weight: 700; margin: 0 0 10px; }
+    .price .muted { font-weight: 400; font-size: 13px; }
+    ul { padding-left: 18px; margin: 0 0 16px; }
+    li { margin: 4px 0; }
+    .button, button { margin-top: auto; display: inline-block; text-align: center; text-decoration: none; font: inherit; border-radius: 8px; padding: 9px 16px; border: 1px solid var(--line); background: #fff; color: var(--text); cursor: pointer; }
+    .button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .button.disabled { opacity: 0.5; pointer-events: none; }
+    .muted { color: var(--muted); }
+    footer { color: var(--muted); font-size: 13px; padding-bottom: 40px; }
+    footer a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="brand" href="./">Docxly</a>
+    <p class="tagline">Bold the headings in your Word Docx file. Private. Deterministic.</p>
+    <h1>Plans</h1>
+    <p class="muted">Start free in your browser. Paid plans are coming soon.</p>
+  </header>
+
+  <main>
+    <div class="tiers">
+      <section class="tier">
+        <h2>Free</h2>
+        <p class="price">$0 <span class="muted">forever</span></p>
+        <ul>
+          <li>Bold headings and subheadings</li>
+          <li>Runs in your browser</li>
+          <li>Nothing uploaded</li>
+          <li>No sign up</li>
+        </ul>
+        <a class="button primary" href="./">Open the free tool</a>
+      </section>
+
+      <section class="tier">
+        <h2>Pro</h2>
+        <p class="price">Coming soon</p>
+        <ul>
+          <li>Hosted API for developers</li>
+          <li>More formatting jobs</li>
+          <li>Higher limits</li>
+          <li>Priority processing</li>
+        </ul>
+        <span class="button disabled">Coming soon</span>
+      </section>
+
+      <section class="tier">
+        <h2>Business</h2>
+        <p class="price">Contact</p>
+        <ul>
+          <li>White label</li>
+          <li>Self hosted option</li>
+          <li>Bulk processing</li>
+          <li>Support</li>
+        </ul>
+        <span class="button disabled">Contact us</span>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <a href="./">Home</a> - <a href="CONFIGURATION.md">Configuration</a>
+    <p>English is not my first language, so some wording may be imperfect.</p>
+  </footer>
+</body>
+</html>

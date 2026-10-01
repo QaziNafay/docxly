@@ -54,6 +54,7 @@ API (for developers who want to run the service themselves).
 ## Links
 
 - Live demo: https://qazinafay.github.io/docxly/
+- Plans: [`pricing.html`](pricing.html)
 - Configuration: [`CONFIGURATION.md`](CONFIGURATION.md)
 
 ---

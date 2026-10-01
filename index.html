@@ -4,46 +4,101 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Docxly - bold the headings in your Word Docx file</title>
-    <meta name="description" content="Bold the headings in a Word Docx file. Runs in your browser. Private and deterministic." />
-    <base href="/docxly/" />
-    <link rel="stylesheet" href="css/app.css" />
+    <title>Docxly</title>
+    <meta name="description" content="Bold the headings in a Word Docx file, automatically. We believe your time is precious." />
+    <style>
+        :root {
+            color-scheme: light dark;
+            --bg: #0f1115;
+            --card: #171a21;
+            --text: #e8eaf0;
+            --muted: #9aa2b1;
+            --accent: #4f8cff;
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg: #f6f7fb;
+                --card: #ffffff;
+                --text: #14161a;
+                --muted: #5b6472;
+                --accent: #2f6bff;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            background: var(--bg);
+            color: var(--text);
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            padding: 24px;
+        }
+
+        main {
+            max-width: 560px;
+            background: var(--card);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: 2rem;
+            letter-spacing: -0.02em;
+        }
+
+        .tagline {
+            margin: 0 0 24px;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        p {
+            line-height: 1.6;
+            color: var(--muted);
+        }
+
+        .points {
+            margin: 24px 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .points li {
+            padding: 8px 0 8px 28px;
+            position: relative;
+            color: var(--text);
+        }
+
+        .points li::before {
+            content: "\2192";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+    </style>
 </head>
 
 <body>
-    <div id="app">
-        <svg class="loading-progress">
-            <circle r="40%" cx="50%" cy="50%" />
-            <circle r="40%" cx="50%" cy="50%" />
-        </svg>
-        <div class="loading-progress-text"></div>
-    </div>
-
-    <div id="blazor-error-ui">
-        An unhandled error has occurred.
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">x</a>
-    </div>
-
-    <script>
-        window.docxly = {
-            download: function (fileName, base64) {
-                const binary = atob(base64);
-                const bytes = new Uint8Array(binary.length);
-                for (let i = 0; i < binary.length; i++) { bytes[i] = binary.charCodeAt(i); }
-                const blob = new Blob([bytes], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement("a");
-                a.href = url;
-                a.download = fileName;
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-                URL.revokeObjectURL(url);
-            }
-        };
-    </script>
-    <script src="_framework/blazor.webassembly.js"></script>
+    <main>
+        <h1>Docxly</h1>
+        <p class="tagline">Bold the headings in your Word Docx file, automatically.</p>
+        <p>In a hurry and want to bold all your headings quickly? Docxly is here to help. We believe your time is
+            precious, and this is built on that philosophy.</p>
+        <ul class="points">
+            <li>Runs inside Microsoft Word as an add-in</li>
+            <li>Bolds main body headings in one click</li>
+            <li>Skips front matter and lists</li>
+        </ul>
+    </main>
 </body>
 
 </html>

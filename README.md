@@ -63,7 +63,7 @@ API (for developers who want to run the service themselves).
 
 If Docxly saves you time, you can support the project:
 
-**[Support me on Ko-fi](https://ko-fi.com/QaziNafay)**
+**[Support me on Ko-fi](https://ko-fi.com/siliconmystic)**
 
 ## Links
 

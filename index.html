@@ -14,6 +14,7 @@
             --text: #e8eaf0;
             --muted: #9aa2b1;
             --accent: #4f8cff;
+            --border: #2a2f3a;
         }
 
         @media (prefers-color-scheme: light) {
@@ -23,6 +24,7 @@
                 --text: #14161a;
                 --muted: #5b6472;
                 --accent: #2f6bff;
+                --border: #e2e6ee;
             }
         }
 
@@ -42,6 +44,7 @@
         }
 
         main {
+            width: 100%;
             max-width: 560px;
             background: var(--card);
             border-radius: 16px;
@@ -66,6 +69,52 @@
             color: var(--muted);
         }
 
+        .field {
+            margin: 20px 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            color: var(--text);
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 16px 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            background: var(--accent);
+            border: 0;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: default;
+        }
+
+        #status {
+            margin-top: 16px;
+            min-height: 1.4em;
+            font-size: 0.95rem;
+            color: var(--muted);
+        }
+
         .points {
             margin: 24px 0 0;
             padding: 0;
@@ -73,7 +122,7 @@
         }
 
         .points li {
-            padding: 8px 0 8px 28px;
+            padding: 6px 0 6px 26px;
             position: relative;
             color: var(--text);
         }
@@ -91,14 +140,122 @@
     <main>
         <h1>Docxly</h1>
         <p class="tagline">Bold the headings in your Word Docx file, automatically.</p>
-        <p>In a hurry and want to bold all your headings quickly? Docxly is here to help. We believe your time is
-            precious, and this is built on that philosophy.</p>
+        <p>Choose a .docx file. Docxly bolds the headings and subheadings in the body and leaves front matter, body
+            text, and lists alone.</p>
+
+        <div class="field">
+            <label for="file">Word file (.docx)</label>
+            <input id="file" type="file" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+        </div>
+
+        <label class="row"><input id="subheadings" type="checkbox" checked /> Bold subheadings too</label>
+
+        <button id="run">Bold headings</button>
+        <div id="status" role="status"></div>
+
         <ul class="points">
-            <li>Runs inside Microsoft Word as an add-in</li>
-            <li>Bolds main body headings in one click</li>
-            <li>Skips front matter and lists</li>
+            <li>Your file is processed by the Docxly engine</li>
+            <li>Every other part of the file is preserved untouched</li>
         </ul>
     </main>
+
+    <script>
+        var API_BASE = "https://docxly.pythonanywhere.com";
+
+        var fileInput = document.getElementById("file");
+        var subheadingsInput = document.getElementById("subheadings");
+        var runButton = document.getElementById("run");
+        var statusEl = document.getElementById("status");
+
+        function setStatus(message) {
+            statusEl.textContent = message;
+        }
+
+        function bytesToBase64(bytes) {
+            var binary = "";
+            var chunk = 0x8000;
+            for (var i = 0; i < bytes.length; i += chunk) {
+                binary += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk));
+            }
+            return btoa(binary);
+        }
+
+        function base64ToBytes(base64) {
+            var binary = atob(base64);
+            var bytes = new Uint8Array(binary.length);
+            for (var i = 0; i < binary.length; i++) {
+                bytes[i] = binary.charCodeAt(i);
+            }
+            return bytes;
+        }
+
+        function outputName(name) {
+            var dot = name.lastIndexOf(".");
+            if (dot <= 0) {
+                return name + " (Docxly).docx";
+            }
+            return name.slice(0, dot) + " (Docxly)" + name.slice(dot);
+        }
+
+        function download(name, bytes) {
+            var blob = new Blob([bytes], {
+                type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            });
+            var url = URL.createObjectURL(blob);
+            var link = document.createElement("a");
+            link.href = url;
+            link.download = name;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            URL.revokeObjectURL(url);
+        }
+
+        async function run() {
+            var file = fileInput.files[0];
+            if (!file) {
+                setStatus("Choose a .docx file first.");
+                return;
+            }
+
+            runButton.disabled = true;
+
+            try {
+                setStatus("Reading file...");
+                var buffer = await file.arrayBuffer();
+                var base64 = bytesToBase64(new Uint8Array(buffer));
+
+                setStatus("Bolding headings...");
+                var response = await fetch(API_BASE + "/bold-headings", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        docx: base64,
+                        include_subheadings: subheadingsInput.checked
+                    })
+                });
+
+                if (!response.ok) {
+                    var text = await response.text();
+                    throw new Error("Server error " + response.status + ": " + text);
+                }
+
+                var data = await response.json();
+                if (data.changed) {
+                    download(outputName(file.name), base64ToBytes(data.docx));
+                    setStatus("Done. Bolded " + data.bolded_paragraph_count + " heading(s).");
+                } else {
+                    setStatus("No headings needed bolding. Your file is unchanged.");
+                }
+            } catch (error) {
+                setStatus("Error: " + (error && error.message ? error.message : String(error)));
+            } finally {
+                runButton.disabled = false;
+            }
+        }
+
+        runButton.addEventListener("click", run);
+    </script>
 </body>
 
 </html>

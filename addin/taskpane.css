@@ -31,6 +31,10 @@ button {
 button.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
 button:disabled { opacity: 0.5; cursor: default; }
 
+.support { text-align: center; margin-top: 14px; }
+.support a { color: #ff5f5f; font-weight: 600; text-decoration: none; }
+.support a:hover { text-decoration: underline; }
+
 .log {
   margin: 12px 0;
   background: #0f1420;

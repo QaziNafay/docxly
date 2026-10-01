@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Docxly - Automated</title>
+  <link rel="stylesheet" href="taskpane.css" />
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+</head>
+<body>
+  <header>
+    <div class="brand">Docxly</div>
+    <p class="tagline">Bold all of your headings, automatically.</p>
+  </header>
+
+  <main>
+    <p class="muted">In a hurry and want to bold all of your headings? Try Docxly. It bolds the headings and subheadings in the body of the document and leaves front matter, body text, and lists alone.</p>
+
+    <label class="row"><input id="includeSubheadings" type="checkbox" checked /> Bold subheadings too</label>
+
+    <button id="run" class="primary">Bold headings</button>
+
+    <pre id="log" class="log">Ready.</pre>
+
+    <p class="muted small">This is the Automated version. An Interactive version that asks you before each change is coming soon.</p>
+  </main>
+
+  <script src="taskpane.js"></script>
+</body>
+</html>

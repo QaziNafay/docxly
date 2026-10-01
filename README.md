@@ -41,14 +41,6 @@ Open **https://qazinafay.github.io/docxly/**
 
 Everything runs locally in your browser. The first load takes a few seconds.
 
-## Microsoft Word add-in
-
-**Docxly - Automated** also runs inside Word as an add-in. It bolds the headings
-and subheadings in the body of the open document.
-
-See [`ADDIN_SETUP.md`](ADDIN_SETUP.md) for how to test it and how to publish it
-so it appears in the Word add-in library.
-
 ## Configuration and API
 
 See [`CONFIGURATION.md`](CONFIGURATION.md) for the web app options and for the

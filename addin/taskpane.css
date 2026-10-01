@@ -1,0 +1,47 @@
+:root { --accent: #2f6fed; --text: #1c2230; --muted: #6b7480; --line: #e3e6ea; }
+
+body {
+  margin: 0;
+  padding: 12px 14px;
+  font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  color: var(--text);
+  background: #fff;
+  line-height: 1.45;
+}
+
+header { margin-bottom: 10px; }
+.brand { font-size: 20px; font-weight: 700; color: var(--accent); }
+.tagline { margin: 2px 0 0; color: var(--muted); font-size: 12px; }
+
+.muted { color: var(--muted); }
+.small { font-size: 11px; }
+
+.row { display: flex; align-items: center; gap: 8px; margin: 12px 0; font-size: 13px; }
+
+button {
+  width: 100%;
+  font: inherit;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--text);
+  cursor: pointer;
+}
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+button:disabled { opacity: 0.5; cursor: default; }
+
+.support { text-align: center; margin-top: 14px; }
+.support a { color: #ff5f5f; font-weight: 600; text-decoration: none; }
+.support a:hover { text-decoration: underline; }
+
+.log {
+  margin: 12px 0;
+  background: #0f1420;
+  color: #d7e0ea;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 11px;
+  min-height: 18px;
+  white-space: pre-wrap;
+}

@@ -4,269 +4,44 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Docxly</title>
-    <meta name="description" content="Bold the headings in a Word Docx file, automatically. We believe your time is precious." />
+    <title>Docxly - Making Formatting Easy!</title>
+    <meta name="description" content="Docxly is a small set of focused tools that make formatting in Microsoft Word easy. Docxly Bold and Docxly Wrap." />
+    <link rel="icon" href="icon-192.png" />
     <style>
-        :root {
-            color-scheme: light dark;
-            --bg: #0f1115;
-            --card: #171a21;
-            --text: #e8eaf0;
-            --muted: #9aa2b1;
-            --accent: #4f8cff;
-            --border: #2a2f3a;
-        }
-
-        @media (prefers-color-scheme: light) {
-            :root {
-                --bg: #f6f7fb;
-                --card: #ffffff;
-                --text: #14161a;
-                --muted: #5b6472;
-                --accent: #2f6bff;
-                --border: #e2e6ee;
-            }
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            min-height: 100vh;
-            display: grid;
-            place-items: center;
-            background: var(--bg);
-            color: var(--text);
-            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-            padding: 24px;
-        }
-
-        main {
-            width: 100%;
-            max-width: 560px;
-            background: var(--card);
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-        }
-
-        h1 {
-            margin: 0 0 8px;
-            font-size: 2rem;
-            letter-spacing: -0.02em;
-        }
-
-        .tagline {
-            margin: 0 0 24px;
-            color: var(--accent);
-            font-weight: 600;
-        }
-
-        p {
-            line-height: 1.6;
-            color: var(--muted);
-        }
-
-        .field {
-            margin: 20px 0;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 0.95rem;
-        }
-
-        input[type="file"] {
-            width: 100%;
-            color: var(--text);
-        }
-
-        .row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin: 16px 0;
-        }
-
-        button {
-            width: 100%;
-            padding: 12px 16px;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #fff;
-            background: var(--accent);
-            border: 0;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-
-        button:disabled {
-            opacity: 0.6;
-            cursor: default;
-        }
-
-        #status {
-            margin-top: 16px;
-            min-height: 1.4em;
-            font-size: 0.95rem;
-            color: var(--muted);
-        }
-
-        .points {
-            margin: 24px 0 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        .points li {
-            padding: 6px 0 6px 26px;
-            position: relative;
-            color: var(--text);
-        }
-
-        .points li::before {
-            content: "\2192";
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-        }
-
-        .foot {
-            margin: 28px 0 0;
-            font-size: 0.9rem;
-        }
-
-        .foot a {
-            color: var(--accent);
-        }
+        :root { color-scheme: light dark; --bg: #0f1115; --card: #171a21; --text: #e8eaf0; --muted: #9aa2b1; --accent: #4f8cff; }
+        @media (prefers-color-scheme: light) { :root { --bg: #f6f7fb; --card: #fff; --text: #14161a; --muted: #5b6472; --accent: #2f6bff; } }
+        * { box-sizing: border-box; }
+        body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.6; padding: 24px; }
+        main { max-width: 640px; background: var(--card); border-radius: 16px; padding: 40px; }
+        h1 { margin: 0 0 4px; font-size: 2rem; letter-spacing: -0.02em; }
+        .tagline { margin: 0 0 20px; color: var(--accent); font-weight: 700; }
+        p { color: var(--muted); }
+        h2 { font-size: 1.1rem; margin: 28px 0 8px; }
+        ul { padding-left: 20px; }
+        li { color: var(--text); margin: 6px 0; }
+        a { color: var(--accent); }
     </style>
 </head>
 
 <body>
     <main>
         <h1>Docxly</h1>
-        <p class="tagline">Bold the headings in your Word Docx file, automatically.</p>
-        <p>Choose a .docx file. Docxly bolds the headings and subheadings and leaves everything else alone.</p>
+        <p class="tagline">Making Formatting Easy!</p>
+        <p>Docxly is a small set of focused tools that make formatting in Microsoft Word quick and boring, so you can get
+            back to the work that matters. Each tool does one job well, and nothing else.</p>
 
-        <div class="field">
-            <label for="file">Word file (.docx)</label>
-            <input id="file" type="file" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
-        </div>
-
-        <label class="row"><input id="subheadings" type="checkbox" checked /> Bold subheadings too</label>
-
-        <button id="run">Bold headings</button>
-        <div id="status" role="status"></div>
-
-        <ul class="points">
-            <li>Files are processed by the API hosted at PythonAnywhere</li>
-            <li>No files are stored</li>
-            <li>It only bolds your headings, the remaining document remains untouched</li>
+        <h2>Tools</h2>
+        <ul>
+            <li><a href="https://siliconmystic.com/docxly/docxly-bold/">Docxly Bold</a>: bold the headings in a Word
+                document.</li>
+            <li><a href="https://siliconmystic.com/docxly/wrap-fix-justified-text/">Docxly Wrap</a>: fix stretched
+                justified text.</li>
         </ul>
 
-        <p class="foot">Hosted on PythonAnywhere. <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="https://ko-fi.com/siliconmystic" target="_blank" rel="noopener">Support me on Ko-fi</a></p>
+        <h2>Product philosophy</h2>
+        <p>Formatting should not be a chore. We build small, predictable tools that fix one annoying thing at a time.
+            Simple, honest, and free.</p>
     </main>
-
-    <script>
-        var API_BASE = "https://docxly.pythonanywhere.com";
-
-        var fileInput = document.getElementById("file");
-        var subheadingsInput = document.getElementById("subheadings");
-        var runButton = document.getElementById("run");
-        var statusEl = document.getElementById("status");
-
-        function setStatus(message) {
-            statusEl.textContent = message;
-        }
-
-        function bytesToBase64(bytes) {
-            var binary = "";
-            var chunk = 0x8000;
-            for (var i = 0; i < bytes.length; i += chunk) {
-                binary += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk));
-            }
-            return btoa(binary);
-        }
-
-        function base64ToBytes(base64) {
-            var binary = atob(base64);
-            var bytes = new Uint8Array(binary.length);
-            for (var i = 0; i < binary.length; i++) {
-                bytes[i] = binary.charCodeAt(i);
-            }
-            return bytes;
-        }
-
-        function outputName(name) {
-            var dot = name.lastIndexOf(".");
-            if (dot <= 0) {
-                return name + " (Docxly).docx";
-            }
-            return name.slice(0, dot) + " (Docxly)" + name.slice(dot);
-        }
-
-        function download(name, bytes) {
-            var blob = new Blob([bytes], {
-                type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-            });
-            var url = URL.createObjectURL(blob);
-            var link = document.createElement("a");
-            link.href = url;
-            link.download = name;
-            document.body.appendChild(link);
-            link.click();
-            link.remove();
-            URL.revokeObjectURL(url);
-        }
-
-        async function run() {
-            var file = fileInput.files[0];
-            if (!file) {
-                setStatus("Choose a .docx file first.");
-                return;
-            }
-
-            runButton.disabled = true;
-
-            try {
-                setStatus("Reading file...");
-                var buffer = await file.arrayBuffer();
-                var base64 = bytesToBase64(new Uint8Array(buffer));
-
-                setStatus("Bolding headings...");
-                var response = await fetch(API_BASE + "/bold-headings", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        docx: base64,
-                        include_subheadings: subheadingsInput.checked
-                    })
-                });
-
-                if (!response.ok) {
-                    var text = await response.text();
-                    throw new Error("Server error " + response.status + ": " + text);
-                }
-
-                var data = await response.json();
-                if (data.changed) {
-                    download(outputName(file.name), base64ToBytes(data.docx));
-                    setStatus("Done. Bolded " + data.bolded_paragraph_count + " heading(s).");
-                } else {
-                    setStatus("No headings needed bolding. Your file is unchanged.");
-                }
-            } catch (error) {
-                setStatus("Error: " + (error && error.message ? error.message : String(error)));
-            } finally {
-                runButton.disabled = false;
-            }
-        }
-
-        runButton.addEventListener("click", run);
-    </script>
 </body>
 
 </html>

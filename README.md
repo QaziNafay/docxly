@@ -68,7 +68,6 @@ If Docxly saves you time, you can support the project:
 ## Links
 
 - Live demo: https://qazinafay.github.io/docxly/
-- Plans: [`pricing.html`](pricing.html)
 - Configuration: [`CONFIGURATION.md`](CONFIGURATION.md)
 
 ---

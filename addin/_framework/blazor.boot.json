@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "DocxlyAddin",
   "resources": {
-    "hash": "sha256-x/e9GI8TIdGyCapNT32sPxp9jjFzl3V4awxr0d5YWlE=",
+    "hash": "sha256-447cWhNt2YgFQQbuPcK5E//bJ2dfdOm3CPa5FSqrXC8=",
     "jsModuleNative": {
       "dotnet.native.8.0.27.qz5o49ms3o.js": "sha256-sn/g61GjVPhViOYQDkq1OMlk0eyS9r2Hi0qgU2o0HIU="
     },
@@ -14,7 +14,7 @@
     "assembly": {
       "DocumentFormat.OpenXml.Framework.wasm": "sha256-5EPGdkbnGQk2dbFWvHpyfQp4tEPHI5iQQ9zXUOjbGHs=",
       "DocumentFormat.OpenXml.wasm": "sha256-fhd/1drRZOpIsO+Un5RExtDvUrFF4ZjTfk+NFsNV1O4=",
-      "DocxlyAddin.wasm": "sha256-ne40v15avGJ1QGv846+A3niwXuAD0AwvJMYGO35heSE=",
+      "DocxlyAddin.wasm": "sha256-l0GdVJAa3izRM1UnMewOOL3uzsjLlg2o6ZAwbVd0ozc=",
       "DocxStructure.wasm": "sha256-X0ELNxIoOyl2lMqV7LLOsuqL7Cu7QEpRfZaGZGNFLRg=",
       "Microsoft.AspNetCore.Authorization.wasm": "sha256-pBbijNuXC4NlZuYxRRllxv8HVJgChmzEBeUb9QOPInE=",
       "Microsoft.AspNetCore.Components.Forms.wasm": "sha256-jONkNPFQj/o5XC/EiPznikBdiBHEoxZCXX6H9Ya4VZE=",

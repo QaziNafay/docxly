@@ -59,12 +59,6 @@ API (for developers who want to run the service themselves).
 - The web app processes your file in the browser and does not upload it.
 - Documents are not sent to AI providers and are not used for training.
 
-## Support
-
-If Docxly saves you time, you can support the project:
-
-**[Support me on Ko-fi](https://ko-fi.com/siliconmystic)**
-
 ## Links
 
 - Live demo: https://qazinafay.github.io/docxly/
